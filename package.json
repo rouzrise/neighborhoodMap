@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "google-map-react": "^1.0.5",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
+    "react-simple-storage": "^1.2.2"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "name": "neighborhood_map",
+  "description": "---",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rouzrise/neighborhoodMap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rouzrise/neighborhoodMap/issues"
+  },
+  "homepage": "https://github.com/rouzrise/neighborhoodMap#readme"
+}
