@@ -13,6 +13,7 @@ class App extends React.Component {
     styleSideMenu: {width: 0}
   }
 
+  // function to open/close sidemenu
   toggleSideMenu = () => {
     if (this.state.styleMap.marginLeft === 0 && this.state.styleSideMenu.width === 0) {
       this.setState({
@@ -31,8 +32,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
+      {/* Add Map Component */}
         <Map google={this.props.google} styleMap={this.state.styleMap} />
+       {/* Add Navbar component */}
         <Navbar toggleSideMenu={this.toggleSideMenu}/>
+        {/* add Sidemenu component */}
         <Sidemenu styleSideMenu={this.state.styleSideMenu} toggleSideMenu={this.toggleSideMenu}/>
       </div>
     );
