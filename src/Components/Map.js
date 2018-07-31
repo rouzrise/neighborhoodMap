@@ -23,7 +23,7 @@ class Map extends Component {
     this.initMap();
   }
   render() {
-    return <div id="map" />;
+    return <div id="map"></div>;
   }
 }
 
