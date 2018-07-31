@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import List from './List';
 
 class Navbar extends Component {
   render() {
@@ -11,8 +12,7 @@ class Navbar extends Component {
           <div className="options-box">
             <h1>Find Sightseeings</h1>
             <div>
-              <input id="show-listings" type="button" value="Show Markers" />
-              <input id="hide-listings" type="button" value="Hide Markers" />
+              <List locations = {this.props.locations} />
             </div>
           </div>
         </div>
