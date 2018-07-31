@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Map extends Component {
   state = {
-    map: '',
+    map: "",
     markers: [],
     locations: [
       {
@@ -34,17 +34,19 @@ class Map extends Component {
 
   // function to initialize map
   initMap() {
-    this.state.map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: 54.939456, lng: 20.158471 },
-      zoom: 15
-    });
+    this.state.map = new window.google.maps.Map(
+      document.getElementById("map"),
+      {
+        center: { lat: 54.939456, lng: 20.158471 },
+        zoom: 15
+      }
+    );
 
-    console.log(this.state.locations[0].location);
+    //loop to create
     for (let i = 0; i < this.state.locations.length; i++) {
       let marker = new window.google.maps.Marker({
         position: this.state.locations[i].location,
         title: this.state.locations[i].title,
-        icon: this.makeMarkerIcon('000000'),
         id: i,
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
@@ -53,21 +55,20 @@ class Map extends Component {
 
       // marker.setMap(this.state.map)
       this.state.markers.push(marker);
-
-
-
     }
   }
 
+  //function to create marker icon
   makeMarkerIcon(markerColor) {
     let markerImage = new window.google.maps.MarkerImage(
-        `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${markerColor}|40|_|%E2%80%A2`,
-        new window.google.maps.Size(21, 34),
-        new window.google.maps.Point(0, 0),
-        new window.google.maps.Point(10, 34),
-        new window.google.maps.Size(21, 34));
+      `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${markerColor}|40|_|%E2%80%A2`,
+      new window.google.maps.Size(21, 34),
+      new window.google.maps.Point(0, 0),
+      new window.google.maps.Point(10, 34),
+      new window.google.maps.Size(21, 34)
+    );
     return markerImage;
-}
+  }
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted
