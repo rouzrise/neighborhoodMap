@@ -23,7 +23,7 @@ class Map extends Component {
     this.initMap();
   }
   render() {
-    return <div id="map"></div>;
+    return <div id="map" style={this.props.styleMap}></div>;
   }
 }
 

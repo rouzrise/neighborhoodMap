@@ -7,12 +7,33 @@ import Sidemenu from "./Components/Sidemenu";
 
 
 class App extends React.Component {
+
+  state = {
+    styleMap: {marginLeft: 0},
+    styleSideMenu: {width: 0}
+  }
+
+  toggleSideMenu = () => {
+    if (this.state.styleMap.marginLeft === 0 && this.state.styleSideMenu.width === 0) {
+      this.setState({
+        styleMap: {marginLeft: '250px'},
+        styleSideMenu: {width: '250px'}
+      })
+    }
+    else{
+      this.setState({
+        styleMap: {marginLeft: 0},
+        styleSideMenu: {width: 0}
+      })
+    }
+  }
+
   render() {
     return (
-      <div class="container">
-        <Map google={this.props.google} />
-        <Navbar />
-        <Sidemenu />
+      <div className="container">
+        <Map google={this.props.google} styleMap={this.state.styleMap} />
+        <Navbar toggleSideMenu={this.toggleSideMenu}/>
+        <Sidemenu styleSideMenu={this.state.styleSideMenu} toggleSideMenu={this.toggleSideMenu}/>
       </div>
     );
   }
