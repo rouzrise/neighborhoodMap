@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { GoogleApiWrapper } from 'google-maps-react';
+import $ from 'jquery';
 import Map from './Components/Map';
 import Navbar from './Components/Navbar';
 import Sidemenu from './Components/Sidemenu';
@@ -44,7 +45,24 @@ class App extends React.Component {
         title: 'Kursky Rail Terminal',
         location: { lat: 55.75735474979769, lng: 37.6605351655094 }
       }
-    ]
+    ],
+    getFoursquareData: []
+  }
+
+  getFoursquareAPI(){
+    $.ajax({
+      url: 'https://api.foursquare.com/v2/venues/search?ll=55.755826,37.6173&query=train&intent=browse&radius=10000&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806&m=foursquare',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+          this.setState({getFoursquareData: data}, function() {
+            console.log(this.state.getFoursquareData);
+          });
+      }.bind(this), 
+      error: function(xhr, status, err){
+          console.log(err);
+      }
+    });
   }
 
   // function to open/close sidemenu
@@ -61,6 +79,10 @@ class App extends React.Component {
         styleSideMenu: {width: 0}
       })
     }
+  }
+
+  componentDidMount() {
+    this.getFoursquareAPI();
   }
 
   render() {
