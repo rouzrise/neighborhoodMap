@@ -72,7 +72,11 @@ class Map extends Component {
       infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
       });
-      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div><a href=https://foursquare.com/v/foursquare-hq/ target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
+      console.log(this.props.foursquareData)
+      const index = this.props.foursquareData.findIndex(elem => elem.name.substring(0,3).toLowerCase() === marker.title.substring(0,3).toLowerCase())
+      // console.log(index)
+      let id = this.props.foursquareData[index].id;
+      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div><a href=https://foursquare.com/v/foursquare-hq/${id} target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
     }    
     infoWindow.open(this.state.map, marker);
   }

@@ -56,9 +56,7 @@ class App extends React.Component {
       dataType: 'json',
       cache: false,
       success: function(data) {
-          this.setState({foursquareData: data}, function() {
-            console.log(this.state.foursquareData.response.venues);
-          });
+          this.setState({foursquareData: data.response.venues})
       }.bind(this), 
       error: function(xhr, status, err){
           console.log(err);
@@ -90,7 +88,7 @@ class App extends React.Component {
     return (
       <div className="container">
       {/* Add Map Component */}
-        <Map google={this.props.google} styleMap={this.state.styleMap} locations={this.state.locations}/>
+        <Map google={this.props.google} styleMap={this.state.styleMap} locations={this.state.locations} foursquareData={this.state.foursquareData}/>
        {/* Add Navbar component */}
         <Navbar toggleSideMenu={this.toggleSideMenu}/>
         {/* add Sidemenu component */}
