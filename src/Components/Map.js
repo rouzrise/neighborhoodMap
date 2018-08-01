@@ -35,14 +35,20 @@ class Map extends Component {
       });
 
       // marker.setMap(this.state.map)
-      this.state.markers.push(marker);
-
+      let markers=[];
+      markers.push(marker);
+  
       // let infowindow= this.state.infoWindow;
       // let showInfoWindow = this.showInfoWindow();
 
       marker.addListener("click", () => {
         this.showInfoWindow(marker, this.state.infoWindow);
       });
+
+      this.setState ({
+        markers: markers
+      }
+      )
     }
   }
 
