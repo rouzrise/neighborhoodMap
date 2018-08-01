@@ -72,14 +72,17 @@ class Map extends Component {
       infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
       });
-      console.log(this.props.foursquareData)
+      // console.log(this.props.foursquareData)
       const index = this.props.foursquareData.findIndex(elem => elem.name.substring(0,3).toLowerCase() === marker.title.substring(0,3).toLowerCase())
-      // console.log(index)
-      let id = this.props.foursquareData[index].id;
-      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div><a href=https://foursquare.com/v/foursquare-hq/${id} target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
+      console.log(this.props.foursquareData)
+      let foursquareItem = this.props.foursquareData[index];
+      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div>
+      <div>Address: ${foursquareItem.location.address}</div>
+      <a href=https://foursquare.com/v/foursquare-hq/${foursquareItem.id} target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
     }    
     infoWindow.open(this.state.map, marker);
   }
+
 
   onClickListItem() {
 
@@ -96,6 +99,7 @@ class Map extends Component {
     document.getElementById('list').addEventListener('click', (e) => {
       if (e.target && e.target.nodeName === 'LI') {
         openInfoWindow(e);
+        console.log(e.target)
       }
     });
 

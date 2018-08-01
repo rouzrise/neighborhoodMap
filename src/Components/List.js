@@ -20,7 +20,6 @@ class List extends Component {
   }
   render() {
     return <ul id="list">
-    <li><input placeholder='Search...'/></li>
     {this.state.list}
     </ul>;
   }

@@ -11,6 +11,7 @@ class Navbar extends Component {
         <div className="container">
           <div className="options-box">
             <h1>Find Train Station</h1>
+            <div class='filter'><input id='filter' placeholder='Filter...'/></div>
             <div>
               <List locations = {this.props.locations} />
             </div>

@@ -111,7 +111,8 @@ input[type="button"] {
   font-family: Courier;
 }
 
-#list li {
+#list li,
+#filter {
   background-color: #111;
   color: white;
   display: inline-block;
@@ -125,7 +126,8 @@ input[type="button"] {
   font-size: 0.8em;
 }
 
-#list li:hover {
+#list li:hover,
+#filter:hover {
   background-color: #ffcc00;
   color: #000;
 }
