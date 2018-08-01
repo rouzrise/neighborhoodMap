@@ -19,7 +19,12 @@ class Map extends Component {
 
     this.state.infoWindow = new window.google.maps.InfoWindow();
 
-    //loop to create
+    this.createMarkers();
+  
+  }
+
+  createMarkers() {
+    //loop to create markers
     for (let i = 0; i < this.props.locations.length; i++) {
       let marker = new window.google.maps.Marker({
         position: this.props.locations[i].location,
@@ -40,6 +45,7 @@ class Map extends Component {
       });
     }
   }
+
   //function to create marker icon
   makeMarkerIcon(markerColor) {
     let markerImage = new window.google.maps.MarkerImage(
@@ -51,6 +57,8 @@ class Map extends Component {
     );
     return markerImage;
   }
+
+
 
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker !== marker) {
