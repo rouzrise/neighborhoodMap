@@ -2,34 +2,9 @@ import React, { Component } from 'react';
 
 class Map extends Component {
   state = {
-    map: "",
+    map: {},
     markers: [],
-    locations: [
-      {
-        title: "Vodonapornaya Bashnya Raushena",
-        location: { lat: 54.943433, lng: 20.15463 }
-      },
-      {
-        title: 'Villa "Rosenhaus"',
-        location: { lat: 54.940407, lng: 20.156668 }
-      },
-      {
-        title: 'Skulptura "Nesushchaya Vodu"',
-        location: { lat: 54.941844, lng: 20.155385 }
-      },
-      {
-        title: "Church of St. Seraphim of Sarov",
-        location: { lat: 54.940751, lng: 20.162496 }
-      },
-      {
-        title: "Baptistskaya Kapella Raushena",
-        location: { lat: 54.935728, lng: 20.161672 }
-      },
-      {
-        title: "Zheleznodorozhnyy Vokzal Raushen-Ort",
-        location: { lat: 54.933523, lng: 20.160724 }
-      }
-    ]
+    infoWindow: {}
   };
 
   // function to initialize map
@@ -42,22 +17,48 @@ class Map extends Component {
       }
     );
 
+    this.state.infoWindow = new window.google.maps.InfoWindow();
+
     //loop to create
-    for (let i = 0; i < this.state.locations.length; i++) {
+    for (let i = 0; i < this.props.locations.length; i++) {
       let marker = new window.google.maps.Marker({
-        position: this.state.locations[i].location,
-        title: this.state.locations[i].title,
+        position: this.props.locations[i].location,
+        title: this.props.locations[i].title,
         id: i,
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
       });
-      console.log(marker.icon);
+
+    // НАЧАТЬ ОТСЮДА - С ДОБАВЛЕНИЯ ИНФОВИНДОУ
+     
 
       // marker.setMap(this.state.map)
       this.state.markers.push(marker);
+
+       marker.addListener('click', function () {
+        // this.showInfoWindow(this, this.state.infoWindow);
+        // this.count();
+
+        // if (this.state.infoWindow.marker != this) {
+        //   this.state.infoWindow.setContent('');
+        //   this.state.infoWindow.marker = this;
+        //   this.state.infoWindow.addListener('closeclick', function () {
+        //     this.state.infoWindow.marker = null;
+        //   });
+        //   this.state.infoWindow.setContent(`<div>${marker.title}</div>`);
+        //   }
+    
+        //   this.state.infoWindow.open(this.state.map, this);
+      });
+
     }
+
+   
   }
 
+  count() {
+    console.log('3');
+  }
   //function to create marker icon
   makeMarkerIcon(markerColor) {
     let markerImage = new window.google.maps.MarkerImage(
@@ -69,6 +70,20 @@ class Map extends Component {
     );
     return markerImage;
   }
+
+  showInfoWindow(marker, infoWindow) {
+    if (infoWindow.marker != marker) {
+      infoWindow.setContent('');
+      infoWindow.marker = marker;
+      infoWindow.addListener('closeclick', function () {
+        infoWindow.marker = null;
+      });
+          infoWindow.setContent(`<div>${marker.title}</div>`);
+      }
+
+      infoWindow.open(this.state.map, marker);
+    }
+
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted
