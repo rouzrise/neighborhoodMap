@@ -19,7 +19,10 @@ class List extends Component {
       this.makeList()
   }
   render() {
-    return <ul id="list">{this.state.list}</ul>;
+    return <ul id="list">
+    <li><input placeholder='Search...'/></li>
+    {this.state.list}
+    </ul>;
   }
 }
 

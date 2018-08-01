@@ -43,10 +43,11 @@ class App extends React.Component {
       },
       {
         title: 'Kursky Rail Terminal',
-        location: { lat: 55.75735474979769, lng: 37.6605351655094 }
+        location: { lat: 55.757409, lng: 37.661102}
       }
     ],
-    getFoursquareData: []
+    getFoursquareData: [],
+    chosenLocation: {}
   }
 
   getFoursquareAPI(){
@@ -56,7 +57,7 @@ class App extends React.Component {
       cache: false,
       success: function(data) {
           this.setState({getFoursquareData: data}, function() {
-            console.log(this.state.getFoursquareData);
+            console.log(this.state.getFoursquareData.response.venues);
           });
       }.bind(this), 
       error: function(xhr, status, err){

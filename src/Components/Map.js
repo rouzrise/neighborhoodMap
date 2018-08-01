@@ -53,7 +53,7 @@ class Map extends Component {
   }
 
   showInfoWindow(marker, infoWindow) {
-    if (infoWindow.marker != marker) {
+    if (infoWindow.marker !== marker) {
       infoWindow.setContent("");
       infoWindow.marker = marker;
       infoWindow.addListener("closeclick", function() {
