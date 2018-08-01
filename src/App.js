@@ -13,28 +13,36 @@ class App extends React.Component {
     styleSideMenu: {width: 0},
     locations: [
       {
-        title: 'Gorky Park',
-        location: { lat: 55.729601, lng: 37.597143 }
+        title: 'Leningradsky Railway Terminal',
+        location: { lat: 55.776028, lng: 37.655425  }
       },
       {
-        title: 'Red Square',
-        location: { lat: 55.753584, lng: 37.62247 }
+        title: 'Kazansky Rail Terminal',
+        location: { lat: 55.773603, lng: 37.656759 }
       },
       {
-        title: 'Novodevichy Park',
-        location: { lat: 55.728722, lng: 37.558618 }
+        title: 'Yaroslavsky Rail Terminal',
+        location: { lat: 55.776785, lng: 37.657338 }
       },
       {
-        title: "Vorobyovy Gory",
-        location: { lat: 55.711593, lng: 37.561049 }
+        title: "Kievsky Rail Terminal",
+        location: { lat: 55.743087, lng: 37.56673 }
       },
       {
-        title: 'Tretyakov Gallery',
-        location: { lat: 55.741389, lng: 37.620864 }
+        title: 'Paveletsky Railway Station',
+        location: { lat: 55.729746, lng: 37.639349 }
       },
       {
-        title: 'Sokolniki Park',
-        location: { lat: 55.795065, lng: 37.676581 }
+        title: 'Rizhsky Rail Terminal',
+        location: { lat: 55.793159, lng: 37.632583 }
+      },
+      {
+        title: 'Belorussky Rail Terminal',
+        location: { lat: 55.776913, lng: 37.581465 }
+      },
+      {
+        title: 'Kursky Rail Terminal',
+        location: { lat: 55.75735474979769, lng: 37.6605351655094 }
       }
     ]
   }

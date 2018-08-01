@@ -10,7 +10,7 @@ class Navbar extends Component {
         </a>
         <div className="container">
           <div className="options-box">
-            <h1>Find Sightseeings</h1>
+            <h1>Find Train Station</h1>
             <div>
               <List locations = {this.props.locations} />
             </div>
