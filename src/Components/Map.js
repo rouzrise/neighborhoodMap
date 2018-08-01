@@ -4,7 +4,7 @@ class Map extends Component {
   state = {
     map: {},
     markers: [],
-    infoWindow: {}
+    // infoWindow: new window.google.maps.InfoWindow
   };
 
   // function to initialize map
@@ -24,6 +24,7 @@ class Map extends Component {
   }
 
   createMarkers() {
+    let markers=[];
     //loop to create markers
     for (let i = 0; i < this.props.locations.length; i++) {
       let marker = new window.google.maps.Marker({
@@ -33,11 +34,8 @@ class Map extends Component {
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
       });
-
       // marker.setMap(this.state.map)
-      let markers=[];
-      markers.push(marker);
-  
+      markers.push(marker);  
       // let infowindow= this.state.infoWindow;
       // let showInfoWindow = this.showInfoWindow();
 
@@ -52,7 +50,7 @@ class Map extends Component {
     }
   }
 
-  //function to create marker icon
+  //function to create marker icon - USE IT LATER when finishing the appearance of project
   makeMarkerIcon(markerColor) {
     let markerImage = new window.google.maps.MarkerImage(
       `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${markerColor}|40|_|%E2%80%A2`,
@@ -74,14 +72,34 @@ class Map extends Component {
         infoWindow.marker = null;
       });
       infoWindow.setContent(`<div>${marker.title}</div>`);
-    }
-
-    infoWindow.open(this.state.map, marker);
+    }    
   }
+
+  // onClickListItem() {
+
+  //   const openInfoWindow = (e) => {
+  //     const index = this.state.markers.findIndex(marker => marker.title.toLowerCase() === e.target.innerText.toLowerCase())
+  //     let newMarker = this.state.markers[index]
+  //     let newInfoWindow = this.state.infoWindow
+  //     console.log(newMarker, newInfoWindow)
+  //     console.log(this.showInfoWindow)
+     
+  //     this.showInfoWindow(newMarker, newInfoWindow)
+  //         }
+
+  //   document.getElementById('list').addEventListener('click', (e) => {
+  //     if (e.target && e.target.nodeName === 'LI') {
+  //       openInfoWindow(e);
+  //     }
+  //   });
+
+    
+  // }
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted
     this.initMap();
+    // this.onClickListItem();
   }
   render() {
     return <div id="map" style={this.props.styleMap} />;
