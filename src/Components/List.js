@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 class List extends Component {
-  state = {
-    list: []
-  };
+  // state = {
+  //   list: []
+  // };
 
   makeList = () => {
     let list = [];
@@ -20,7 +20,7 @@ class List extends Component {
   }
   render() {
     return <ul id="list">
-    {this.state.list}
+    {this.props.list}
     </ul>;
   }
 }

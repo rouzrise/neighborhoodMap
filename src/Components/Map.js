@@ -67,18 +67,26 @@ class Map extends Component {
 
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker !== marker) {
+      console.log(infoWindow)
+      if (infoWindow.marker !== undefined && infoWindow.marker !== null) {
+      infoWindow.marker.setAnimation(null);
+    }
       infoWindow.setContent("");
+      
       infoWindow.marker = marker;
+      marker.setAnimation(window.google.maps.Animation.BOUNCE)
+      console.log(marker.animation)
       infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
+        marker.setAnimation(null)
       });
       // console.log(this.props.foursquareData)
       const index = this.props.foursquareData.findIndex(elem => elem.name.substring(0,3).toLowerCase() === marker.title.substring(0,3).toLowerCase())
       console.log(this.props.foursquareData)
       let foursquareItem = this.props.foursquareData[index];
-      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div>
+      infoWindow.setContent(`<div id='markerTitle'>${marker.title}</div>
       <div>Address: ${foursquareItem.location.address}</div>
-      <a href=https://foursquare.com/v/foursquare-hq/${foursquareItem.id} target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
+      <a href=https://foursquare.com/v/foursquare-hq/${foursquareItem.id} target='_blank' className='linkTitle'>Look at me on Foursquare</a>`);
     }    
     infoWindow.open(this.state.map, marker);
   }
@@ -93,13 +101,16 @@ class Map extends Component {
       console.log(newMarker, newInfoWindow)
       console.log(this.showInfoWindow)
      
+     
       this.showInfoWindow(newMarker, newInfoWindow)
+      console.log(newMarker)
+      
           }
 
     document.getElementById('list').addEventListener('click', (e) => {
       if (e.target && e.target.nodeName === 'LI') {
         openInfoWindow(e);
-        console.log(e.target)
+        // console.log(e.target)
       }
     });
 

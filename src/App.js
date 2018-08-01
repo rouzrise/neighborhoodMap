@@ -46,6 +46,7 @@ class App extends React.Component {
         location: { lat: 55.757409, lng: 37.661102}
       }
     ],
+    list: [],
     foursquareData: [],
     chosenLocation: {},
     query: ''
@@ -81,13 +82,49 @@ class App extends React.Component {
     }
   }
 
+  makeList = () => {
+    let list = [];
+    for (let i = 0; i < this.state.locations.length; i++) {
+      list.push(<li key={i}>{this.state.locations[i].title}</li>);
+    }
+    this.setState({
+      list: list
+    });
+  };
+
+
+  // updateQuery = (query) => {
+  //   this.setState({query: query}) 
+    
+  //     if (query.trim() === '') {
+  //         this.setState({list: []})
+  //     }
+  //   }
+
+  //     else {
+  //       getFoursquareAPI(){
+  //         $.ajax({
+  //           url: 'https://api.foursquare.com/v2/venues/search?ll=55.755826,37.6173&query=train&intent=browse&radius=10000&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806&m=foursquare',
+  //           dataType: 'json',
+  //           cache: false,
+  //           success: function(data) {
+  //             let result = (data) => 
+  //               this.setState({foursquareData: data.response.venues})
+  //           }.bind(this), 
+  //           error: function(xhr, status, err){
+  //               console.log(err);
+  //           }
+  //         });
+  //       }
 
 
   componentDidMount() {
     this.getFoursquareAPI();
+    this.makeList()
   }
 
   render() {
+
     return (
       <div className="container">
       {/* Add Map Component */}
@@ -99,7 +136,8 @@ class App extends React.Component {
                   toggleSideMenu={this.toggleSideMenu} 
                   locations={this.state.locations}
                   query={this.state.query}
-                  updateQuery={this.updateQuery}/>
+                  updateQuery={this.updateQuery}
+                  list={this.state.list}/>
       </div>
     );
   }

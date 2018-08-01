@@ -132,6 +132,10 @@ input[type="button"] {
   color: #000;
 }
 
+#markerTitle {
+font-weight: bold;
+}
+
 @media (max-width: 568px) {
   .navbar-nav {
     display: none;
