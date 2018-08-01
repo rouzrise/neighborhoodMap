@@ -46,7 +46,7 @@ class App extends React.Component {
         location: { lat: 55.757409, lng: 37.661102}
       }
     ],
-    getFoursquareData: [],
+    foursquareData: [],
     chosenLocation: {}
   }
 
@@ -56,8 +56,8 @@ class App extends React.Component {
       dataType: 'json',
       cache: false,
       success: function(data) {
-          this.setState({getFoursquareData: data}, function() {
-            console.log(this.state.getFoursquareData.response.venues);
+          this.setState({foursquareData: data}, function() {
+            console.log(this.state.foursquareData.response.venues);
           });
       }.bind(this), 
       error: function(xhr, status, err){

@@ -34,14 +34,16 @@ class Map extends Component {
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
       });
-      // marker.setMap(this.state.map)
-      markers.push(marker);  
+     
       // let infowindow= this.state.infoWindow;
       // let showInfoWindow = this.showInfoWindow();
 
       marker.addListener("click", () => {
         this.showInfoWindow(marker, this.state.infoWindow);
       });
+
+       // marker.setMap(this.state.map)
+       markers.push(marker);  
 
       this.setState ({
         markers: markers
@@ -63,7 +65,6 @@ class Map extends Component {
   }
 
 
-
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker !== marker) {
       infoWindow.setContent("");
@@ -71,35 +72,36 @@ class Map extends Component {
       infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
       });
-      infoWindow.setContent(`<div>${marker.title}</div>`);
+      infoWindow.setContent(`<div className='markerTitle'>${marker.title}</div><a href=https://foursquare.com/v/foursquare-hq/ target='_blank' className='linkTitle'>Look me on Foursquare</a>`);
     }    
+    infoWindow.open(this.state.map, marker);
   }
 
-  // onClickListItem() {
+  onClickListItem() {
 
-  //   const openInfoWindow = (e) => {
-  //     const index = this.state.markers.findIndex(marker => marker.title.toLowerCase() === e.target.innerText.toLowerCase())
-  //     let newMarker = this.state.markers[index]
-  //     let newInfoWindow = this.state.infoWindow
-  //     console.log(newMarker, newInfoWindow)
-  //     console.log(this.showInfoWindow)
+    const openInfoWindow = (e) => {
+      const index = this.state.markers.findIndex(marker => marker.title.toLowerCase() === e.target.innerText.toLowerCase())
+      let newMarker = this.state.markers[index]
+      let newInfoWindow = this.state.infoWindow
+      console.log(newMarker, newInfoWindow)
+      console.log(this.showInfoWindow)
      
-  //     this.showInfoWindow(newMarker, newInfoWindow)
-  //         }
+      this.showInfoWindow(newMarker, newInfoWindow)
+          }
 
-  //   document.getElementById('list').addEventListener('click', (e) => {
-  //     if (e.target && e.target.nodeName === 'LI') {
-  //       openInfoWindow(e);
-  //     }
-  //   });
+    document.getElementById('list').addEventListener('click', (e) => {
+      if (e.target && e.target.nodeName === 'LI') {
+        openInfoWindow(e);
+      }
+    });
 
     
-  // }
+  }
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted
     this.initMap();
-    // this.onClickListItem();
+    this.onClickListItem();
   }
   render() {
     return <div id="map" style={this.props.styleMap} />;
