@@ -11,7 +11,8 @@ class Navbar extends Component {
         <div className="container">
           <div className="options-box">
             <h1>Find Train Station</h1>
-            <div class='filter'><input id='filter' placeholder='Filter...'/></div>
+            <div class='filter'><input id='filter' placeholder='Filter...' type='text' value={this.props.query}
+                        onChange={(e) =>this.props.updateQuery(e.target.value)}/></div>
             <div>
               <List locations = {this.props.locations} />
             </div>
