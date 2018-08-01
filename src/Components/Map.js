@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Map extends Component {
   state = {
@@ -12,8 +12,8 @@ class Map extends Component {
     this.state.map = new window.google.maps.Map(
       document.getElementById("map"),
       {
-        center: { lat: 54.939456, lng: 20.158471 },
-        zoom: 15
+        center: { lat: 55.755826, lng: 37.6173 },
+        zoom: 12
       }
     );
 
@@ -29,26 +29,16 @@ class Map extends Component {
         animation: window.google.maps.Animation.DROP
       });
 
-    // НАЧАТЬ ОТСЮДА - С ДОБАВЛЕНИЯ ИНФОВИНДОУ
-     
-
       // marker.setMap(this.state.map)
       this.state.markers.push(marker);
 
-        // let infowindow= this.state.infoWindow;
-        // let showInfoWindow = this.showInfoWindow();
-  
-       marker.addListener('click', () => {
-        this.showInfoWindow(marker, this.state.infoWindow)
-       });
+      // let infowindow= this.state.infoWindow;
+      // let showInfoWindow = this.showInfoWindow();
 
+      marker.addListener("click", () => {
+        this.showInfoWindow(marker, this.state.infoWindow);
+      });
     }
-
-   
-  }
-
-  count() {
-    console.log('3');
   }
   //function to create marker icon
   makeMarkerIcon(markerColor) {
@@ -64,17 +54,16 @@ class Map extends Component {
 
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker != marker) {
-      infoWindow.setContent('');
+      infoWindow.setContent("");
       infoWindow.marker = marker;
-      infoWindow.addListener('closeclick', function () {
+      infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
       });
-          infoWindow.setContent(`<div>${marker.title}</div>`);
-      }
-
-      infoWindow.open(this.state.map, marker);
+      infoWindow.setContent(`<div>${marker.title}</div>`);
     }
 
+    infoWindow.open(this.state.map, marker);
+  }
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted

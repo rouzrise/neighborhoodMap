@@ -13,28 +13,28 @@ class App extends React.Component {
     styleSideMenu: {width: 0},
     locations: [
       {
-        title: "Vodonapornaya Bashnya Raushena",
-        location: { lat: 54.943433, lng: 20.15463 }
+        title: 'Gorky Park',
+        location: { lat: 55.729601, lng: 37.597143 }
       },
       {
-        title: 'Villa "Rosenhaus"',
-        location: { lat: 54.940407, lng: 20.156668 }
+        title: 'Red Square',
+        location: { lat: 55.753584, lng: 37.62247 }
       },
       {
-        title: 'Skulptura "Nesushchaya Vodu"',
-        location: { lat: 54.941844, lng: 20.155385 }
+        title: 'Novodevichy Park',
+        location: { lat: 55.728722, lng: 37.558618 }
       },
       {
-        title: "Church of St. Seraphim of Sarov",
-        location: { lat: 54.940751, lng: 20.162496 }
+        title: "Vorobyovy Gory",
+        location: { lat: 55.711593, lng: 37.561049 }
       },
       {
-        title: "Baptistskaya Kapella Raushena",
-        location: { lat: 54.935728, lng: 20.161672 }
+        title: 'Tretyakov Gallery',
+        location: { lat: 55.741389, lng: 37.620864 }
       },
       {
-        title: "Zheleznodorozhnyy Vokzal Raushen-Ort",
-        location: { lat: 54.933523, lng: 20.160724 }
+        title: 'Sokolniki Park',
+        location: { lat: 55.795065, lng: 37.676581 }
       }
     ]
   }

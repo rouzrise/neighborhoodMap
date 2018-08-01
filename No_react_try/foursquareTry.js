@@ -22,3 +22,6 @@ request({
     console.log(body);
   }
 });
+
+// https://api.foursquare.com/v2/venues/search?ll=55.755826,37.6173&query=railway&intent=browse&radius=5000
+lat/long = 55.755826,37.6173; query = ShopMart; intent = browse; radius = 500
