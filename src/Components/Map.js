@@ -35,21 +35,12 @@ class Map extends Component {
       // marker.setMap(this.state.map)
       this.state.markers.push(marker);
 
-       marker.addListener('click', function () {
-        // this.showInfoWindow(this, this.state.infoWindow);
-        // this.count();
-
-        // if (this.state.infoWindow.marker != this) {
-        //   this.state.infoWindow.setContent('');
-        //   this.state.infoWindow.marker = this;
-        //   this.state.infoWindow.addListener('closeclick', function () {
-        //     this.state.infoWindow.marker = null;
-        //   });
-        //   this.state.infoWindow.setContent(`<div>${marker.title}</div>`);
-        //   }
-    
-        //   this.state.infoWindow.open(this.state.map, this);
-      });
+        // let infowindow= this.state.infoWindow;
+        // let showInfoWindow = this.showInfoWindow();
+  
+       marker.addListener('click', () => {
+        this.showInfoWindow(marker, this.state.infoWindow)
+       });
 
     }
 
