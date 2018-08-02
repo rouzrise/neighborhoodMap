@@ -1,12 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { GoogleApiWrapper } from "google-maps-react";
 import $ from "jquery";
 import Map from "./Components/Map";
 // import PropTypes from 'prop-types';
 
-
-class App extends React.Component {
+class App extends Component {
   state = {
     foursquareData: []
   };

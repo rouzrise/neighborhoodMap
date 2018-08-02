@@ -3,8 +3,7 @@ import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
 import yellowMarker from "./../icons/markerYellow.png";
 import redMarker from "./../icons/markerRed.png";
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 class Map extends Component {
   state = {
@@ -251,6 +250,6 @@ class Map extends Component {
 
 Map.propTypes = {
   foursquareData: PropTypes.array
-}
+};
 
 export default Map;
