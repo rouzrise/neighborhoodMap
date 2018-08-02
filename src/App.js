@@ -44,10 +44,8 @@ class App extends React.Component {
         location: { lat: 55.757409, lng: 37.661102}
       }
     ],
-    list: [],
     foursquareData: [],
-    chosenLocation: {},
-    query: ''
+    chosenLocation: {}
   }
 
   getFoursquareAPI(){
@@ -116,12 +114,7 @@ class App extends React.Component {
        {/* Add Navbar component */}
     
         {/* add Sidemenu component */}
-        <Sidemenu styleSideMenu={this.state.styleSideMenu} 
-                  toggleSideMenu={this.toggleSideMenu} 
-                  locations={this.state.locations}
-                  query={this.state.query}
-                  updateQuery={this.updateQuery}
-                  list={this.state.list}/>
+       
       </div>
     );
   }

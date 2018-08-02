@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
 
-class Navbar extends Component {
+class SideMenu extends Component {
   render() {
     return (
       <div id="side-menu" className="side-nav" style={this.props.styleSideMenu}>
@@ -23,4 +23,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default SideMenu;

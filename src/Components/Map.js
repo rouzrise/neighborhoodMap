@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from './Navbar'
+import Sidemenu from './Sidemenu';
 
 class Map extends Component {
   state = {
@@ -7,7 +8,8 @@ class Map extends Component {
     markers: [],
     styleMap: {marginLeft: 0},
     styleSideMenu: {width: 0},
-    infoWindow: {}
+    infoWindow: {},
+    query: ''
   };
 
   // function to initialize map
@@ -146,6 +148,12 @@ class Map extends Component {
     <div id="map" style={this.props.styleMap} />
 
     <Navbar toggleSideMenu={this.toggleSideMenu}/>
+
+    <Sidemenu styleSideMenu={this.state.styleSideMenu} 
+                  toggleSideMenu={this.toggleSideMenu} 
+                  locations={this.props.locations}
+                  query={this.state.query}
+                  updateQuery={this.state.query}/>
     </div>
     )
   }
