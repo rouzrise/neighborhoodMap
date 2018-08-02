@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Navbar from './Navbar'
 import Sidemenu from './Sidemenu';
+import yellowMarker from './../icons/markerYellow.png';
+import redMarker from './../icons/markerRed.png';
 
 class Map extends Component {
   state = {
@@ -73,22 +75,32 @@ class Map extends Component {
 
   createMarkers() {
     let markers=[];
+    let mouseOverIcon = this.makeMarkerIcon(yellowMarker);
+    let mouseOutIcon = this.makeMarkerIcon(redMarker);
     //loop to create markers
     for (let i = 0; i < this.state.locations.length; i++) {
       let marker = new window.google.maps.Marker({
         position: this.state.locations[i].location,
         title: this.state.locations[i].title,
         id: i,
+        icon: mouseOutIcon,
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
       });
      
       // let infowindow= this.state.infoWindow;
       // let showInfoWindow = this.showInfoWindow();
-
       marker.addListener("click", () => {
         this.showInfoWindow(marker, this.state.infoWindow);
       });
+
+      marker.addListener('mouseover', function () {
+        this.setIcon(mouseOverIcon);
+        console.log(yellowMarker)
+    });
+    marker.addListener('mouseout', function () {
+        this.setIcon(mouseOutIcon);
+    });
 
        // marker.setMap(this.state.map)
        markers.push(marker);  
@@ -100,18 +112,26 @@ class Map extends Component {
     }
   }
 
-  //function to create marker icon - USE IT LATER when finishing the appearance of project
-  makeMarkerIcon(markerColor) {
+  // //function to create marker icon - USE IT LATER when finishing the appearance of project
+  // makeMarkerIcon(markerColor) {
+  //   let markerImage = new window.google.maps.MarkerImage(
+  //     `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${markerColor}|40|_|%E2%80%A2`,
+  //     new window.google.maps.Size(21, 34),
+  //     new window.google.maps.Point(0, 0),
+  //     new window.google.maps.Point(10, 34),
+  //     new window.google.maps.Size(21, 34)
+  //   );
+  //   return markerImage;
+  // }
+
+
+    //function to create marker icon - USE IT LATER when finishing the appearance of project
+  makeMarkerIcon(markerIcon) {
     let markerImage = new window.google.maps.MarkerImage(
-      `http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|${markerColor}|40|_|%E2%80%A2`,
-      new window.google.maps.Size(21, 34),
-      new window.google.maps.Point(0, 0),
-      new window.google.maps.Point(10, 34),
-      new window.google.maps.Size(21, 34)
+      markerIcon
     );
     return markerImage;
   }
-
 
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker !== marker) {
