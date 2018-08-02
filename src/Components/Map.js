@@ -4,6 +4,41 @@ import Sidemenu from './Sidemenu';
 
 class Map extends Component {
   state = {
+      
+    locations: [
+      {
+        title: 'Leningradsky Railway Terminal',
+        location: { lat: 55.776028, lng: 37.655425  }
+      },
+      {
+        title: 'Kazansky Rail Terminal',
+        location: { lat: 55.773603, lng: 37.656759 }
+      },
+      {
+        title: 'Yaroslavsky Rail Terminal',
+        location: { lat: 55.776785, lng: 37.657338 }
+      },
+      {
+        title: "Kievsky Rail Terminal",
+        location: { lat: 55.743087, lng: 37.56673 }
+      },
+      {
+        title: 'Paveletsky Railway Station',
+        location: { lat: 55.729746, lng: 37.639349 }
+      },
+      {
+        title: 'Rizhsky Rail Terminal',
+        location: { lat: 55.793159, lng: 37.632583 }
+      },
+      {
+        title: 'Belorussky Rail Terminal',
+        location: { lat: 55.776913, lng: 37.581465 }
+      },
+      {
+        title: 'Kursky Rail Terminal',
+        location: { lat: 55.757409, lng: 37.661102}
+      }
+    ],
     map: {},
     markers: [],
     styleMap: {marginLeft: 0},
@@ -31,10 +66,10 @@ class Map extends Component {
   createMarkers() {
     let markers=[];
     //loop to create markers
-    for (let i = 0; i < this.props.locations.length; i++) {
+    for (let i = 0; i < this.state.locations.length; i++) {
       let marker = new window.google.maps.Marker({
-        position: this.props.locations[i].location,
-        title: this.props.locations[i].title,
+        position: this.state.locations[i].location,
+        title: this.state.locations[i].title,
         id: i,
         map: this.state.map,
         animation: window.google.maps.Animation.DROP
@@ -137,6 +172,7 @@ class Map extends Component {
     
   }
 
+
   componentDidMount() {
     // should be invoked immediately after a component is mounted
     this.initMap();
@@ -151,9 +187,9 @@ class Map extends Component {
 
     <Sidemenu styleSideMenu={this.state.styleSideMenu} 
                   toggleSideMenu={this.toggleSideMenu} 
-                  locations={this.props.locations}
+                  locations={this.state.locations}
                   query={this.state.query}
-                  updateQuery={this.state.query}/>
+                  updateQuery={this.updateQuery}/>
     </div>
     )
   }

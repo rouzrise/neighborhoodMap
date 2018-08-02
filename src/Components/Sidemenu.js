@@ -12,7 +12,7 @@ class SideMenu extends Component {
           <div className="options-box">
             <h1>Find Train Station</h1>
             <div className='filter'><input id='filter' placeholder='Filter...' type='text' value={this.props.query}
-                        onChange={(e) =>this.props.updateQuery(e.target.value)}/></div>
+                        onChange={(e) =>this.props.updateQuery(e)}/></div>
             <div>
               <List locations = {this.props.locations} list={this.props.list}/>
             </div>

@@ -3,7 +3,7 @@ import './App.css';
 import { GoogleApiWrapper } from 'google-maps-react';
 import $ from 'jquery';
 import Map from './Components/Map';
-import Sidemenu from './Components/Sidemenu';
+
 
 
 class App extends React.Component {
@@ -64,15 +64,15 @@ class App extends React.Component {
 
 
 
-  makeList = () => {
-    let list = [];
-    for (let i = 0; i < this.state.locations.length; i++) {
-      list.push(<li key={i}>{this.state.locations[i].title}</li>);
-    }
-    this.setState({
-      list: list
-    });
-  };
+  // makeList = () => {
+  //   let list = [];
+  //   for (let i = 0; i < this.state.locations.length; i++) {
+  //     list.push(<li key={i}>{this.state.locations[i].title}</li>);
+  //   }
+  //   this.setState({
+  //     list: list
+  //   });
+  // };
 
 
   // updateQuery = (query) => {
@@ -102,7 +102,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getFoursquareAPI();
-    this.makeList()
+    // this.makeList()
   }
 
   render() {
