@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
 import yellowMarker from "./../icons/markerYellow.png";
 import redMarker from "./../icons/markerRed.png";
+import PropTypes from 'prop-types';
+
 
 class Map extends Component {
   state = {
@@ -108,7 +110,7 @@ class Map extends Component {
       });
     }
   }
-  //function to create marker icon 
+  //function to create marker icon
   makeMarkerIcon(markerIcon) {
     let markerImage = new window.google.maps.MarkerImage(markerIcon);
     return markerImage;
@@ -197,7 +199,15 @@ class Map extends Component {
     this.onClickListItem();
   }
   render() {
-    const { locations, query, markers, infoWindow, styleSideMenu, styleMap } = this.state
+    //Destructuring
+    const {
+      locations,
+      query,
+      markers,
+      infoWindow,
+      styleSideMenu,
+      styleMap
+    } = this.state;
     if (query) {
       locations.forEach((location, index) => {
         if (location.title.toLowerCase().includes(query.toLowerCase())) {
@@ -237,6 +247,10 @@ class Map extends Component {
       </div>
     );
   }
+}
+
+Map.propTypes = {
+  foursquareData: PropTypes.array
 }
 
 export default Map;

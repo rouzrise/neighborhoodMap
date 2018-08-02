@@ -3,6 +3,8 @@ import "./App.css";
 import { GoogleApiWrapper } from "google-maps-react";
 import $ from "jquery";
 import Map from "./Components/Map";
+// import PropTypes from 'prop-types';
+
 
 class App extends React.Component {
   state = {

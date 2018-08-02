@@ -19,4 +19,8 @@ class List extends Component {
   }
 }
 
+List.propTypes = {
+  locations: PropTypes.array
+}
+
 export default List;

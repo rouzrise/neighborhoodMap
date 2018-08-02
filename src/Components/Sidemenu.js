@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import List from "./List";
+import PropTypes from 'prop-types';
+
 
 class SideMenu extends Component {
   render() {
-        //Destructuring
+    //Destructuring
     const {
       styleSideMenu,
       toggleSideMenu,
@@ -40,4 +42,15 @@ class SideMenu extends Component {
   }
 }
 
+SideMenu.propTypes = {
+  styleSideMenu: PropTypes.object,
+  toggleSideMenu: PropTypes.func,
+  query: PropTypes.string,
+  updateQuery: PropTypes.func,
+  locations: PropTypes.array,
+  markers: PropTypes.array
+}
+
 export default SideMenu;
+
+

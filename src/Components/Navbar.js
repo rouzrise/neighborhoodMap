@@ -22,4 +22,8 @@ class Navbar extends Component {
   }
 }
 
+Navbar.propTypes = {
+  toggleSideMenu: PropTypes.func
+}
+
 export default Navbar;
