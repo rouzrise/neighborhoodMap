@@ -76,6 +76,7 @@ class Map extends Component {
     let markers = [];
     let mouseOverIcon = this.makeMarkerIcon(yellowMarker);
     let mouseOutIcon = this.makeMarkerIcon(redMarker);
+    let bounds = new window.google.maps.LatLngBounds();
     //loop to create markers
     for (let i = 0; i < this.state.locations.length; i++) {
       let marker = new window.google.maps.Marker({
@@ -87,6 +88,7 @@ class Map extends Component {
         animation: window.google.maps.Animation.DROP
       });
 
+      bounds.extend(marker.position)
       // let infowindow= this.state.infoWindow;
       // let showInfoWindow = this.showInfoWindow();
       marker.addListener("click", () => {
@@ -108,6 +110,7 @@ class Map extends Component {
         markers: markers
       });
     }
+    this.state.map.fitBounds(bounds);
   }
   //function to create marker icon
   makeMarkerIcon(markerIcon) {
