@@ -8,35 +8,43 @@ class Map extends Component {
     locations: [
       {
         title: 'Leningradsky Railway Terminal',
-        location: { lat: 55.776028, lng: 37.655425  }
+        location: { lat: 55.776028, lng: 37.655425  },
+        visible: true
       },
       {
         title: 'Kazansky Rail Terminal',
-        location: { lat: 55.773603, lng: 37.656759 }
+        location: { lat: 55.773603, lng: 37.656759 },
+        visible: true
       },
       {
         title: 'Yaroslavsky Rail Terminal',
-        location: { lat: 55.776785, lng: 37.657338 }
+        location: { lat: 55.776785, lng: 37.657338 },
+        visible: true
       },
       {
         title: "Kievsky Rail Terminal",
-        location: { lat: 55.743087, lng: 37.56673 }
+        location: { lat: 55.743087, lng: 37.56673 },
+        visible: true
       },
       {
         title: 'Paveletsky Railway Station',
-        location: { lat: 55.729746, lng: 37.639349 }
+        location: { lat: 55.729746, lng: 37.639349 },
+        visible: true
       },
       {
         title: 'Rizhsky Rail Terminal',
-        location: { lat: 55.793159, lng: 37.632583 }
+        location: { lat: 55.793159, lng: 37.632583 },
+        visible: true
       },
       {
         title: 'Belorussky Rail Terminal',
-        location: { lat: 55.776913, lng: 37.581465 }
+        location: { lat: 55.776913, lng: 37.581465 },
+        visible: true
       },
       {
         title: 'Kursky Rail Terminal',
-        location: { lat: 55.757409, lng: 37.661102}
+        location: { lat: 55.757409, lng: 37.661102},
+        visible: true
       }
     ],
     map: {},
@@ -189,18 +197,22 @@ class Map extends Component {
       locations.forEach((location,index) => {
         if(location.title.toLowerCase().includes(query.toLowerCase())) {
           markers[index].setVisible(true)
+          location.visible = true
         } else {
           if (infoWindow.marker === markers[index]){
             // close the info window if marker removed
             infoWindow.close()
           }
           markers[index].setVisible(false)
+          location.visible = false
+
         }
       })
     } else {
       locations.forEach((location,index) => {
         if (markers.length && markers[index]) {
           markers[index].setVisible(true)
+          location.visible = true
         }
       })
     }
