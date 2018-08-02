@@ -172,6 +172,11 @@ class Map extends Component {
     
   }
 
+  updateQuery = (e) => {
+    this.setState({query: e.target.value}) //this is done so that everything you print in searchbox could be reflected on the page
+    
+
+   }
 
   componentDidMount() {
     // should be invoked immediately after a component is mounted
@@ -179,6 +184,27 @@ class Map extends Component {
     this.onClickListItem();
   }
   render() {
+    const { locations, query, markers, infoWindow} = this.state
+    if (query) {
+      locations.forEach((location,index) => {
+        if(location.title.toLowerCase().includes(query.toLowerCase())) {
+          markers[index].setVisible(true)
+        } else {
+          if (infoWindow.marker === markers[index]){
+            // close the info window if marker removed
+            infoWindow.close()
+          }
+          markers[index].setVisible(false)
+        }
+      })
+    } else {
+      locations.forEach((location,index) => {
+        if (markers.length && markers[index]) {
+          markers[index].setVisible(true)
+        }
+      })
+    }
+
     return (
     <div className='container'>
     <div id="map" style={this.props.styleMap} />
