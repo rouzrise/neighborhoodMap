@@ -3,15 +3,13 @@ import './App.css';
 import { GoogleApiWrapper } from 'google-maps-react';
 import $ from 'jquery';
 import Map from './Components/Map';
-import Navbar from './Components/Navbar';
 import Sidemenu from './Components/Sidemenu';
 
 
 class App extends React.Component {
 
   state = {
-    styleMap: {marginLeft: 0},
-    styleSideMenu: {width: 0},
+    
     locations: [
       {
         title: 'Leningradsky Railway Terminal',
@@ -66,21 +64,7 @@ class App extends React.Component {
     });
   }
 
-  // function to open/close sidemenu
-  toggleSideMenu = () => {
-    if (this.state.styleMap.marginLeft === 0 && this.state.styleSideMenu.width === 0) {
-      this.setState({
-        styleMap: {marginLeft: '250px'},
-        styleSideMenu: {width: '250px'}
-      })
-    }
-    else{
-      this.setState({
-        styleMap: {marginLeft: 0},
-        styleSideMenu: {width: 0}
-      })
-    }
-  }
+
 
   makeList = () => {
     let list = [];
@@ -130,7 +114,7 @@ class App extends React.Component {
       {/* Add Map Component */}
         <Map google={this.props.google} styleMap={this.state.styleMap} locations={this.state.locations} foursquareData={this.state.foursquareData}/>
        {/* Add Navbar component */}
-        <Navbar toggleSideMenu={this.toggleSideMenu}/>
+    
         {/* add Sidemenu component */}
         <Sidemenu styleSideMenu={this.state.styleSideMenu} 
                   toggleSideMenu={this.toggleSideMenu} 

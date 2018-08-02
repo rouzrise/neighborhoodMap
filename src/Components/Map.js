@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import Navbar from './Navbar'
 
 class Map extends Component {
   state = {
     map: {},
     markers: [],
-    // infoWindow: new window.google.maps.InfoWindow
+    styleMap: {marginLeft: 0},
+    styleSideMenu: {width: 0},
+    infoWindow: {}
   };
 
   // function to initialize map
@@ -91,6 +94,21 @@ class Map extends Component {
     infoWindow.open(this.state.map, marker);
   }
 
+    // function to open/close sidemenu
+    toggleSideMenu = () => {
+      if (this.state.styleMap.marginLeft === 0 && this.state.styleSideMenu.width === 0) {
+        this.setState({
+          styleMap: {marginLeft: '250px'},
+          styleSideMenu: {width: '250px'}
+        })
+      }
+      else{
+        this.setState({
+          styleMap: {marginLeft: 0},
+          styleSideMenu: {width: 0}
+        })
+      }
+    }
 
   onClickListItem() {
 
@@ -123,7 +141,13 @@ class Map extends Component {
     this.onClickListItem();
   }
   render() {
-    return <div id="map" style={this.props.styleMap} />;
+    return (
+    <div className='container'>
+    <div id="map" style={this.props.styleMap} />
+
+    <Navbar toggleSideMenu={this.toggleSideMenu}/>
+    </div>
+    )
   }
 }
 
