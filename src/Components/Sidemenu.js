@@ -14,7 +14,7 @@ class SideMenu extends Component {
             <div className='filter'><input id='filter' placeholder='Filter...' type='text' value={this.props.query}
                         onChange={(e) =>this.props.updateQuery(e)}/></div>
             <div>
-              <List locations = {this.props.locations} list={this.props.list}/>
+              <List locations = {this.props.locations} markers={this.props.markers}/>
             </div>
           </div>
         </div>

@@ -215,7 +215,8 @@ class Map extends Component {
                   toggleSideMenu={this.toggleSideMenu} 
                   locations={this.state.locations}
                   query={this.state.query}
-                  updateQuery={this.updateQuery}/>
+                  updateQuery={this.updateQuery}
+                  markers={this.state.markers}/>
     </div>
     )
   }

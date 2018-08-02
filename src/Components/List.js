@@ -20,8 +20,14 @@ class List extends Component {
   }
 
   render() {
+    const {markers} = this.props
     return <ul id="list">
-    {this.state.list}
+    {/* {this.state.list} */}
+    {
+      markers.filter(marker => marker.getVisible()).map((marker) => {
+<li key ={marker.id}>{marker.title}</li>})
+      }
+    
     </ul>;
   }
 }
