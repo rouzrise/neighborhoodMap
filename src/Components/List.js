@@ -1,14 +1,21 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
 
 class List extends Component {
   render() {
-    return <ul id="list">
-    {
-      this.props.locations.filter(location => (location.visible === true)).map((location) => {
-        return <li key ={location.title}>{location.title}</li>})
-      }
-   
-    </ul>;
+    //DESTRUCTURING
+    const { locations } = this.props;
+
+    return (
+      <ul id="list">
+        {locations
+          .filter(location => location.visible === true)
+          .map(location => {
+            return <li key={location.title}>{location.title}</li>;
+          })}
+      </ul>
+    );
   }
 }
 
