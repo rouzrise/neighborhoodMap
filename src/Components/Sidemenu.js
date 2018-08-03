@@ -15,10 +15,9 @@ const SideMenu = ({
       <a href="#" className="btn-close" onClick={toggleSideMenu}>
         &times;
       </a>
-      <div className="container">
         <div className="options-box">
           <h1>Find Train Station</h1>
-          <div className="filter">
+          <div className='filter' role='search' aria-labelledby='filter'>
             <input
               id="filter"
               placeholder="Filter..."
@@ -31,7 +30,6 @@ const SideMenu = ({
             <List locations={locations} markers={markers} />
           </div>
         </div>
-      </div>
     </div>
   );
 };

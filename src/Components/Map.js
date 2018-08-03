@@ -141,11 +141,11 @@ class Map extends Component {
       );
       console.log(this.props.foursquareData);
       let foursquareItem = this.props.foursquareData[index];
-      infoWindow.setContent(`<div id='markerTitle'>${marker.title}</div>
+      infoWindow.setContent(`<div tabIndex='1' className='infowindowContent'><div id='markerTitle'>${marker.title}</div>
       <div>Address: ${foursquareItem.location.address}</div>
-      <a href=https://foursquare.com/v/foursquare-hq/${
+      <a tabIndex='1' href=https://foursquare.com/v/foursquare-hq/${
         foursquareItem.id
-      } target='_blank' className='linkTitle'>Look at me on Foursquare</a>`);
+      } target='_blank' className='linkTitle'>Look at me on Foursquare</a></div>`);
     }
     infoWindow.open(this.state.map, marker);
   }
@@ -233,8 +233,8 @@ class Map extends Component {
     }
 
     return (
-      <div className="container">
-        <div id="map" style={styleMap} />
+      <div className="container" role='main'>
+        <div id="map" style={styleMap} aria-hidden='true' role='application'/>
 
         <Navbar toggleSideMenu={this.toggleSideMenu} />
 
