@@ -7,7 +7,8 @@ import Map from "./Components/Map";
 
 class App extends Component {
   state = {
-    foursquareData: []
+    foursquareData: [],
+    foursquareError: false
   };
 
   getFoursquareAPI() {
@@ -20,9 +21,8 @@ class App extends Component {
         this.setState({ foursquareData: data.response.venues });
       }.bind(this),
       error: function(xhr, status, err) {
-        console.log(err);
-
-      }
+        this.setState({foursquareError: true})
+      }.bind(this)
     });
   }
 
@@ -33,13 +33,13 @@ class App extends Component {
   render() {
     //Destructuring
     const { google, loaded } = this.props;
-    const { foursquareData } = this.state;
+    const { foursquareData, foursquareError } = this.state;
     return (
       <div className="container">
         {/* Add Map Component, handle errors on loading using ternary operator as usual 'if' doesn't work in react return */}
 
  { loaded ? (
-        <Map google={google} foursquareData={foursquareData} />
+        <Map google={google} foursquareData={foursquareData} foursquareError={foursquareError}/>
  ) : (
         <div class="errorOnLoadingMessage">Google Map was not loaded due to error</div>
 )

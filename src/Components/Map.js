@@ -147,12 +147,16 @@ this.setState({
       );
       console.log(this.props.foursquareData);
       let foursquareItem = this.props.foursquareData[index];
-      infoWindow.setContent(`<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${marker.title}</div>
+      infoWindow.setContent(
+        this.props.foursquareError ? (`<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${marker.title}</div>
+        <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
+        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`) : (`<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${marker.title}</div>
       <div>Address: ${foursquareItem.location.address}</div>
       <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
         foursquareItem.id
-      } target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`);
-    }
+      } target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`)
+    )
+  }
     infoWindow.open(this.state.map, marker);
   }
 
