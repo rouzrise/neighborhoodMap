@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+//functional (stateless) component
 const Navbar = ({ toggleSideMenu }) => {
   return (
+    //renders navbar
     <nav className="navbar">
       <span className="open-slide">
         <a href="#" onClick={toggleSideMenu}>

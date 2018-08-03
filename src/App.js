@@ -11,6 +11,7 @@ class App extends Component {
     foursquareError: false
   };
 
+  //function to download 3d-party API - Foursquare API
   getFoursquareAPI() {
     $.ajax({
       url:
@@ -21,12 +22,13 @@ class App extends Component {
         this.setState({ foursquareData: data.response.venues });
       }.bind(this),
       error: function(xhr, status, err) {
-        this.setState({foursquareError: true})
+        this.setState({ foursquareError: true }); //handling errors on downloading API
       }.bind(this)
     });
   }
 
   componentDidMount() {
+    // should be invoked immediately after a component is mounted
     this.getFoursquareAPI();
   }
 
@@ -34,19 +36,24 @@ class App extends Component {
     //Destructuring
     const { google, loaded } = this.props;
     const { foursquareData, foursquareError } = this.state;
+
     return (
       <div className="container">
-        {/* Add Map Component, handle errors on loading using ternary operator as usual 'if' doesn't work in react return */}
-
- { loaded ? (
-        <Map google={google} foursquareData={foursquareData} foursquareError={foursquareError}/>
- ) : (
-        <div class="errorOnLoadingMessage">Google Map was not loaded due to error</div>
-)
-    }
-
+        {/* Add Map Component, handle errors on loading using ternary operator cause usual 'if' doesn't work in react return */}
+        {loaded ? (
+          //is rendered if no errors in loading map
+          <Map
+            google={google}
+            foursquareData={foursquareData}
+            foursquareError={foursquareError}
+          />
+        ) : (
+          //is rendered if there is error in loading map
+          <div class="errorOnLoadingMessage">
+            Google Map was not loaded due to error
+          </div>
+        )}
       </div>
-
     );
   }
 }

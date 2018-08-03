@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
-import yellowMarker from "./../icons/markerYellow.png";
-import redMarker from "./../icons/markerRed.png";
+import yellowMarker from "./../icons/markerYellow.png"; //imports icon for marker from folder
+import redMarker from "./../icons/markerRed.png"; //imports icon for marker from folder
 import PropTypes from "prop-types";
 
 class Map extends Component {
@@ -55,31 +55,33 @@ class Map extends Component {
     styleSideMenu: { width: 0 },
     infoWindow: {},
     query: "",
-    ariaHiddenSideMenu: "true"
+    ariaHiddenSideMenu: "true" //state - if true  - sets side menu aria-hidden(if false - on the contrary)
   };
 
   // function to initialize map
   initMap() {
     if (this.props && this.props.google) {
-    this.state.map = new window.google.maps.Map(
-      document.getElementById("map"),
-      {
-        center: { lat: 55.755826, lng: 37.6173 },
-        zoom: 12
-      }
-    );
+      this.state.map = new window.google.maps.Map(
+        document.getElementById("map"),
+        {
+          center: { lat: 55.755826, lng: 37.6173 },
+          zoom: 12
+        }
+      );
     }
 
-let infoWindow = new window.google.maps.InfoWindow();
-this.setState({
-  infoWindow
-})
+    let infoWindow = new window.google.maps.InfoWindow();
+    this.setState({
+      infoWindow
+    });
 
     this.createMarkers();
   }
 
+  //function to create markers
   createMarkers() {
     let markers = [];
+    //set icons
     let mouseOverIcon = this.makeMarkerIcon(yellowMarker);
     let mouseOutIcon = this.makeMarkerIcon(redMarker);
     let bounds = new window.google.maps.LatLngBounds();
@@ -94,28 +96,32 @@ this.setState({
         animation: window.google.maps.Animation.DROP
       });
 
-      bounds.extend(marker.position)
-      // let infowindow= this.state.infoWindow;
-      // let showInfoWindow = this.showInfoWindow();
+      //set bounds
+      bounds.extend(marker.position);
+
+      //add listener to marker to show infowindow on click event
       marker.addListener("click", () => {
         this.showInfoWindow(marker, this.state.infoWindow);
       });
 
+      //add listener to marker to change icon on mouseover event
       marker.addListener("mouseover", function() {
         this.setIcon(mouseOverIcon);
-        console.log(yellowMarker);
+        // console.log(yellowMarker);
       });
+      //add listener to marker to change icon on mouseoutevent
       marker.addListener("mouseout", function() {
         this.setIcon(mouseOutIcon);
       });
 
-      // marker.setMap(this.state.map)
       markers.push(marker);
 
       this.setState({
         markers: markers
       });
     }
+
+    //set bounds for map
     this.state.map.fitBounds(bounds);
   }
   //function to create marker icon
@@ -124,9 +130,9 @@ this.setState({
     return markerImage;
   }
 
+  //function to set infoWindow
   showInfoWindow(marker, infoWindow) {
     if (infoWindow.marker !== marker) {
-      console.log(infoWindow);
       if (infoWindow.marker !== undefined && infoWindow.marker !== null) {
         infoWindow.marker.setAnimation(null);
       }
@@ -134,29 +140,40 @@ this.setState({
 
       infoWindow.marker = marker;
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
-      console.log(marker.animation);
+      // console.log(marker.animation);
       infoWindow.addListener("closeclick", function() {
         infoWindow.marker = null;
         marker.setAnimation(null);
       });
       // console.log(this.props.foursquareData)
+      //checks ащк coincidence with data received from Foursquare API to find the item to populate infowindow with additional info
       const index = this.props.foursquareData.findIndex(
         elem =>
           elem.name.substring(0, 3).toLowerCase() ===
           marker.title.substring(0, 3).toLowerCase()
       );
-      console.log(this.props.foursquareData);
+      // console.log(this.props.foursquareData);
       let foursquareItem = this.props.foursquareData[index];
+
+      //sets content of infowindow
       infoWindow.setContent(
-        this.props.foursquareError ? (`<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${marker.title}</div>
+        this.props.foursquareError
+          ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
+            `<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${
+              marker.title
+            }</div>
         <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
-        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`) : (`<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${marker.title}</div>
+        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`
+          : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
+            `<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${
+              marker.title
+            }</div>
       <div>Address: ${foursquareItem.location.address}</div>
       <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
         foursquareItem.id
-      } target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`)
-    )
-  }
+      } target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`
+      );
+    }
     infoWindow.open(this.state.map, marker);
   }
 
@@ -169,17 +186,18 @@ this.setState({
       this.setState({
         styleMap: { marginLeft: "250px" },
         styleSideMenu: { width: "250px" },
-        ariaHiddenSideMenu: "false"
+        ariaHiddenSideMenu: "false" //if sidemenu open
       });
     } else {
       this.setState({
         styleMap: { marginLeft: 0 },
         styleSideMenu: { width: 0 },
-        ariaHiddenSideMenu: "true"
+        ariaHiddenSideMenu: "true" //if sidemenu closed
       });
     }
   };
 
+  //function to open Infowindow of location(marker) by clicking corresponding listItem
   onClickListItem() {
     const openInfoWindow = e => {
       const index = this.state.markers.findIndex(
@@ -188,13 +206,12 @@ this.setState({
       );
       let newMarker = this.state.markers[index];
       let newInfoWindow = this.state.infoWindow;
-      console.log(newMarker, newInfoWindow);
-      console.log(this.showInfoWindow);
 
       this.showInfoWindow(newMarker, newInfoWindow);
-      console.log(newMarker);
+      // console.log(newMarker);
     };
 
+    //we catch event on clicking the list by checking if we clicked withing <ul> and nodeName of event target was li (technique from 3rd project)
     document.getElementById("list").addEventListener("click", e => {
       if (e.target && e.target.nodeName === "LI") {
         openInfoWindow(e);
@@ -223,32 +240,37 @@ this.setState({
       styleMap,
       ariaHiddenSideMenu
     } = this.state;
-    
+
+    //functionality for filtering listItems and markers
     if (query) {
       locations.forEach((location, index) => {
         if (location.title.toLowerCase().includes(query.toLowerCase())) {
-          markers[index].setVisible(true);
-          location.visible = true;
+          //checks if markers and list coincide with the query(based on locations array)
+          markers[index].setVisible(true); //influences markers showing on page
+          location.visible = true; //influences listItems showing on sideMenu under the filter as soon as our items list is created based on location array
         } else {
+          //if no coincidence - closes previousle opened infowindows for markers that won't be shown on page
           if (infoWindow.marker === markers[index]) {
             infoWindow.close();
           }
-          markers[index].setVisible(false);
-          location.visible = false;
+          markers[index].setVisible(false); //influences markers showing on page ( sets nonvisible)
+          location.visible = false; //influences listItems showing on sideMenu under the filter  ( sets nonvisible)
         }
       });
-    } else {
+    }
+    //if there is no query
+    else {
       locations.forEach((location, index) => {
         if (markers.length && markers[index]) {
-          markers[index].setVisible(true);
-          location.visible = true;
+          markers[index].setVisible(true); //influences markers showing on page
+          location.visible = true; //influences listItems showing on sideMenu under the filter
         }
       });
     }
 
     return (
-      <div className="container" role='main'>
-        <div id="map" style={styleMap} role="application"/>
+      <div className="container" role="main">
+        <div id="map" style={styleMap} role="application" />
 
         <Navbar toggleSideMenu={this.toggleSideMenu} />
 
