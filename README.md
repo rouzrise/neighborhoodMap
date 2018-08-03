@@ -8,7 +8,7 @@ This is a web application that allows you to find Railway Stations in Moscow.
 
 ## How to start
 
-To start using App `git` clone or download it from [github](https://github.com/rouzrise/neighborhoodMap.git).
+To start using App `git clone` or download it from [github](https://github.com/rouzrise/neighborhoodMap.git).
 
 After cloning or downloading the App - `cd` to the folder in Terminal.
 Be sure you have React installed locally and globally (also you'll need 'prop-types' and 'jquery' packages installed).
