@@ -41,7 +41,8 @@ SideMenu.propTypes = {
   query: PropTypes.string,
   updateQuery: PropTypes.func,
   locations: PropTypes.array,
-  markers: PropTypes.array
+  markers: PropTypes.array,
+  ariaHiddenSideMenu: PropTypes.string
 };
 
 export default SideMenu;

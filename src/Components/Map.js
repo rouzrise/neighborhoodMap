@@ -60,6 +60,7 @@ class Map extends Component {
 
   // function to initialize map
   initMap() {
+    if (this.props && this.props.google) {
     this.state.map = new window.google.maps.Map(
       document.getElementById("map"),
       {
@@ -67,8 +68,12 @@ class Map extends Component {
         zoom: 12
       }
     );
+    }
 
-    this.state.infoWindow = new window.google.maps.InfoWindow();
+let infoWindow = new window.google.maps.InfoWindow();
+this.setState({
+  infoWindow
+})
 
     this.createMarkers();
   }
@@ -239,7 +244,7 @@ class Map extends Component {
 
     return (
       <div className="container" role='main'>
-        <div id="map" style={styleMap} aria-hidden="true" role="application"/>
+        <div id="map" style={styleMap} role="application"/>
 
         <Navbar toggleSideMenu={this.toggleSideMenu} />
 
