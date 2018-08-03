@@ -32,13 +32,21 @@ class App extends Component {
 
   render() {
     //Destructuring
-    const { google } = this.props;
+    const { google, loaded } = this.props;
     const { foursquareData } = this.state;
     return (
       <div className="container">
-        {/* Add Map Component */}
+        {/* Add Map Component, handle errors on loading using ternary operator as usual 'if' doesn't work in react return */}
+
+ { loaded ? (
         <Map google={google} foursquareData={foursquareData} />
+ ) : (
+        <div class="errorOnLoadingMessage">Google Map was not loaded due to error</div>
+)
+    }
+
       </div>
+
     );
   }
 }
