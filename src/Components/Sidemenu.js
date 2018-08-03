@@ -17,7 +17,7 @@ const SideMenu = ({
       </a>
         <div className="options-box">
           <h1>Find Train Station</h1>
-          <div className='filter' role='search' aria-labelledby='filter'>
+          <div className="filter" role="search" aria-labelledby="filter">
             <input
               id="filter"
               placeholder="Filter..."
