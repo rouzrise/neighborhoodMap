@@ -8,10 +8,11 @@ const SideMenu = ({
   query,
   updateQuery,
   locations,
-  markers
+  markers,
+  ariaHiddenSideMenu
 }) => {
   return (
-    <div id="side-menu" className="side-nav" style={styleSideMenu}>
+    <div id="side-menu" className="side-nav" style={styleSideMenu} aria-hidden={ariaHiddenSideMenu}>
       <a href="#" className="btn-close" onClick={toggleSideMenu}>
         &times;
       </a>

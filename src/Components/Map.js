@@ -54,7 +54,8 @@ class Map extends Component {
     styleMap: { marginLeft: 0 },
     styleSideMenu: { width: 0 },
     infoWindow: {},
-    query: ""
+    query: "",
+    ariaHiddenSideMenu: "true"
   };
 
   // function to initialize map
@@ -158,12 +159,14 @@ class Map extends Component {
     ) {
       this.setState({
         styleMap: { marginLeft: "250px" },
-        styleSideMenu: { width: "250px" }
+        styleSideMenu: { width: "250px" },
+        ariaHiddenSideMenu: "false"
       });
     } else {
       this.setState({
         styleMap: { marginLeft: 0 },
-        styleSideMenu: { width: 0 }
+        styleSideMenu: { width: 0 },
+        ariaHiddenSideMenu: "true"
       });
     }
   };
@@ -208,8 +211,10 @@ class Map extends Component {
       markers,
       infoWindow,
       styleSideMenu,
-      styleMap
+      styleMap,
+      ariaHiddenSideMenu
     } = this.state;
+    
     if (query) {
       locations.forEach((location, index) => {
         if (location.title.toLowerCase().includes(query.toLowerCase())) {
@@ -245,6 +250,7 @@ class Map extends Component {
           query={query}
           updateQuery={this.updateQuery}
           markers={markers}
+          ariaHiddenSideMenu={ariaHiddenSideMenu}
         />
       </div>
     );
