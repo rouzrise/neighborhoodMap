@@ -229,6 +229,12 @@ class Map extends Component {
     this.initMap();
     this.onClickListItem();
   }
+
+  gm_authFailure () {alert('Hello world')}
+
+  componentDidCatch() {
+    this.gm_authFailure ()
+  }
   render() {
     //Destructuring
     const {

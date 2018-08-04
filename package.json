@@ -7,9 +7,12 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
+    "gh-pages": "^1.2.0",
     "react-scripts": "^1.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -28,5 +31,5 @@
   "bugs": {
     "url": "https://github.com/rouzrise/neighborhoodMap/issues"
   },
-  "homepage": "https://github.com/rouzrise/neighborhoodMap#readme"
+  "homepage": "https://github.com/rouzrise/neighborhoodMap"
 }

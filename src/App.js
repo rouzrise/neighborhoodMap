@@ -8,7 +8,8 @@ import Map from "./Components/Map";
 class App extends Component {
   state = {
     foursquareData: [],
-    foursquareError: false
+    foursquareError: false,
+    errorOnLoadingMap: false
   };
 
   //function to download 3d-party API - Foursquare API
@@ -30,28 +31,32 @@ class App extends Component {
   componentDidMount() {
     // should be invoked immediately after a component is mounted
     this.getFoursquareAPI();
+    if (window.google === undefined) {
+      this.setState({ errorOnLoadingMap: true });
+    }
+    window.gm_authFailure = () => this.setState({ errorOnLoadingMap: true });
   }
 
   render() {
     //Destructuring
-    const { google, loaded } = this.props;
-    const { foursquareData, foursquareError } = this.state;
+    const { google } = this.props;
+    const { foursquareData, foursquareError, errorOnLoadingMap } = this.state;
 
     return (
       <div className="container">
         {/* Add Map Component, handle errors on loading using ternary operator cause usual 'if' doesn't work in react return */}
-        {loaded ? (
+        {errorOnLoadingMap ? (
+          //is rendered if there is error in loading map
+          <div class="errorOnLoadingMessage">
+            Google Map was not loaded due to error
+          </div>
+        ) : (
           //is rendered if no errors in loading map
           <Map
             google={google}
             foursquareData={foursquareData}
             foursquareError={foursquareError}
           />
-        ) : (
-          //is rendered if there is error in loading map
-          <div class="errorOnLoadingMessage">
-            Google Map was not loaded due to error
-          </div>
         )}
       </div>
     );
