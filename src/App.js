@@ -31,6 +31,8 @@ class App extends Component {
   componentDidMount() {
     // should be invoked immediately after a component is mounted
     this.getFoursquareAPI();
+
+    // check for errors in loading Google Map API
     if (window.google === undefined) {
       this.setState({ errorOnLoadingMap: true });
     }
