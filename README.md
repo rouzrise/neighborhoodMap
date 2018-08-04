@@ -23,7 +23,7 @@ After that run `npm start` to open the Browser tab with working App.
 
 ### 2.Build mode:
 
-You can see the App deployed on Gihub pages: https://rouzrise.github.io/neighborhoodMap/
+You can see the App deployed on Gihub pages: https://rouzrise.github.io/neighborhoodMap/        
 As it's a build mode you can enjoy offline use here due to service worker.
 
 ## What You can do with the App
