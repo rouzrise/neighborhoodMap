@@ -1,17 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 import List from "./List";
 import PropTypes from "prop-types";
 
-//functional (stateless) component
-const SideMenu = ({
-  styleSideMenu,
-  toggleSideMenu,
-  query,
-  updateQuery,
-  locations,
-  markers,
-  ariaHiddenSideMenu
-}) => {
+class SideMenu extends Component {
+  render() {
+    const {
+      styleSideMenu,
+      toggleSideMenu,
+      query,
+      updateQuery,
+      locations,
+      markers,
+      ariaHiddenSideMenu
+    } = this.props
+
   return (
     //renders sidemenu
     <div
@@ -32,6 +34,7 @@ const SideMenu = ({
             type="text"
             value={query}
             onChange={e => updateQuery(e)}
+            ref = {(input) => {this.stationInput = input;}}//is used to set focus in componentDidMount method
           />
         </div>
         <div>
@@ -41,6 +44,7 @@ const SideMenu = ({
     </div>
   );
 };
+}
 
 SideMenu.propTypes = {
   styleSideMenu: PropTypes.object,

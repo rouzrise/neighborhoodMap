@@ -6,6 +6,10 @@ import PropTypes from "prop-types";
 import redMarker from "./../icons/redMarker.svg"; 
 
 class Map extends Component {
+  // constructor() {
+  //   super();
+  //   this.toggleSideMenu = this.toggleSideMenu.bind(this);
+  // }
   state = {
     locations: [
       {
@@ -320,7 +324,7 @@ class Map extends Component {
       <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
       <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
         foursquareItem.id
-      } target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
+      } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
       );
     }
     infoWindow.open(this.state.map, marker);
@@ -337,6 +341,8 @@ class Map extends Component {
         styleSideMenu: { width: "250px" },
         ariaHiddenSideMenu: "false" //if sidemenu open
       });
+      console.log(this.child)
+      this.child.stationInput.focus();
     } else {
       this.setState({
         styleMap: { marginLeft: 0 },
@@ -439,6 +445,7 @@ class Map extends Component {
           updateQuery={this.updateQuery}
           markers={markers}
           ariaHiddenSideMenu={ariaHiddenSideMenu}
+          ref={(ch) => this.child = ch}
         />
       </div>
     );

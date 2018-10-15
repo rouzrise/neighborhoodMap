@@ -21,6 +21,7 @@ class App extends Component {
       cache: false,
       success: function(data) {
         this.setState({ foursquareData: data.response.venues });
+        console.log(this.state.foursquareData)
       }.bind(this),
       error: function(xhr, status, err) {
         this.setState({ foursquareError: true }); //handling errors on downloading API
