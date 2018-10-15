@@ -230,10 +230,12 @@ class Map extends Component {
     this.onClickListItem();
   }
 
-  gm_authFailure () {alert('Hello world')}
+  gm_authFailure() {
+    alert("Hello world");
+  }
 
   componentDidCatch() {
-    this.gm_authFailure ()
+    this.gm_authFailure();
   }
   render() {
     //Destructuring
