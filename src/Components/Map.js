@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
-import yellowMarker from "./../icons/markerYellow.png"; //imports icon for marker from folder
-import redMarker from "./../icons/markerRed.png"; //imports icon for marker from folder
+import yellowMarker from "./../icons/yellowMarker.svg"; //imports icon for marker from folder
 import PropTypes from "prop-types";
+import redMarker from "./../icons/redMarker.svg"; 
 
 class Map extends Component {
   state = {
@@ -264,7 +264,10 @@ class Map extends Component {
   }
   //function to create marker icon
   makeMarkerIcon(markerIcon) {
-    let markerImage = new window.google.maps.MarkerImage(markerIcon);
+    let markerImage = new window.google.maps.MarkerImage(markerIcon, null, /* size is determined at runtime */
+      null, /* origin is 0,0 */
+      null, /* anchor is bottom center of the scaled image */
+      new window.google.maps.Size(42, 68));
     return markerImage;
   }
 
