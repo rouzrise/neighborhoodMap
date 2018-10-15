@@ -249,7 +249,9 @@ class Map extends Component {
       });
       //add listener to marker to change icon on mouseoutevent
       marker.addListener("mouseout", function() {
+        if (this.animating === false) {
         this.setIcon(mouseOutIcon);
+        }
       });
 
       markers.push(marker);
@@ -273,21 +275,27 @@ class Map extends Component {
 
   //function to set infoWindow
   showInfoWindow(marker, infoWindow) {
+    let mouseOverIcon = this.makeMarkerIcon(yellowMarker);
+    let mouseOutIcon = this.makeMarkerIcon(redMarker);
+
     if (infoWindow.marker !== marker) {
       if (infoWindow.marker !== undefined && infoWindow.marker !== null) {
         infoWindow.marker.setAnimation(null);
+        infoWindow.marker.setIcon(mouseOutIcon);
       }
       infoWindow.setContent("");
 
       infoWindow.marker = marker;
+      marker.setIcon(mouseOverIcon);
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
       // console.log(marker.animation);
       infoWindow.addListener("closeclick", function() {
+        marker.setIcon(mouseOutIcon);
         infoWindow.marker = null;
         marker.setAnimation(null);
       });
       // console.log(this.props.foursquareData)
-      //checks ащк coincidence with data received from Foursquare API to find the item to populate infowindow with additional info
+      //checks for coincidence with data received from Foursquare API to find the item to populate infowindow with additional info
       const index = this.props.foursquareData.findIndex(
         elem =>
           elem.name.substring(0, 3).toLowerCase() ===
