@@ -308,19 +308,19 @@ class Map extends Component {
       infoWindow.setContent(
         this.props.foursquareError
           ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
-            `<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${
+            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
               marker.title
             }</div>
         <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
-        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`
+        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
           : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
-            `<div tabIndex="1" className="infowindowContent"><div id="markerTitle">${
+            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
               marker.title
             }</div>
-      <div>Address: ${foursquareItem.location.address}</div>
+      <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
       <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
         foursquareItem.id
-      } target="_blank" rel="nofollow noopener" className="linkTitle">Look at me on Foursquare</a></div>`
+      } target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
       );
     }
     infoWindow.open(this.state.map, marker);
