@@ -143,10 +143,12 @@ input[type="button"] {
   font-size: 0.8em;
 }
 
-#list li:hover {
+#list li:hover,
+#list li:focus {
   background-color: #ffcc00;
   color: #000;
   border: none;
+  outline: none;
 }
 
 #markerTitle {

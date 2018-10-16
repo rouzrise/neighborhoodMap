@@ -8,7 +8,7 @@ import redMarker from "./../icons/redMarker.svg";
 class Map extends Component {
   // constructor() {
   //   super();
-  //   this.toggleSideMenu = this.toggleSideMenu.bind(this);
+  //   this.closeInfowindow = this.closeInfowindow.bind(this);
   // }
   state = {
     locations: [
@@ -375,6 +375,10 @@ class Map extends Component {
     });
   }
 
+  // closeInfowindow() {
+  //  ToBeDONE
+  // }
+
   updateQuery = e => {
     this.setState({ query: e.target.value }); //this is done so that everything you print in searchbox could be reflected on the page
   };
@@ -443,6 +447,7 @@ class Map extends Component {
           locations={locations}
           query={query}
           updateQuery={this.updateQuery}
+          closeInfowindow={this.closeInfowindow}
           markers={markers}
           ariaHiddenSideMenu={ariaHiddenSideMenu}
           ref={(ch) => this.child = ch}

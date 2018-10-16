@@ -9,6 +9,7 @@ class SideMenu extends Component {
       toggleSideMenu,
       query,
       updateQuery,
+      closeInfowindow,
       locations,
       markers,
       ariaHiddenSideMenu
@@ -34,6 +35,7 @@ class SideMenu extends Component {
             type="text"
             value={query}
             onChange={e => updateQuery(e)}
+            onClick={closeInfowindow}
             ref = {(input) => {this.stationInput = input;}}//is used to set focus in componentDidMount method
           />
         </div>
