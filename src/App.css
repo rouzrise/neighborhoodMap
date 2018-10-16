@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 
 html {
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
 }
 body {
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   background-color: #f4f4f4;
   overflow-x: hidden;
   margin: 0;
@@ -143,10 +143,10 @@ input[type="button"] {
   font-size: 0.8em;
 }
 
-#list li:hover,
-#filter:hover {
+#list li:hover {
   background-color: #ffcc00;
   color: #000;
+  border: none;
 }
 
 #markerTitle {
@@ -157,7 +157,6 @@ input[type="button"] {
 
 .markerAddress {
   color: rgba(0, 0, 0, 0.54);
-
 }
 
 .linkTitle {
@@ -174,12 +173,25 @@ input[type="button"] {
 }
 
 .infowindowContent {
-line-height: 24px;
-padding: 14px 12px;
+  line-height: 24px;
+  padding: 14px 12px;
+  color: rgba(0, 0, 0, 0.78);
 }
 
-@media (max-width: 450px) { 
+div.gm-style {
+  font-family: "Karla", sans-serif;
+}
 
+input[type="text"] {
+  border: none;
+}
+
+#filter:focus {
+  outline: none;
+  border-bottom: solid 2px #ffcc00;
+}
+
+@media (max-width: 450px) {
   .appName {
     font-size: 20px;
     top: 19px;
