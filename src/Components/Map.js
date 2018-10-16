@@ -3,9 +3,7 @@ import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
 import yellowMarker from "./../icons/yellowMarker.svg"; //imports icon for marker from folder
 import PropTypes from "prop-types";
-import redMarker from "./../icons/redMarker.svg"; 
-import $ from "jquery";
-
+import redMarker from "./../icons/redMarker.svg";
 
 class Map extends Component {
   // constructor() {
@@ -61,7 +59,6 @@ class Map extends Component {
     styleSideMenu: { width: 0 },
     infoWindow: {},
     query: "",
-    itemVenue: {},
     ariaHiddenSideMenu: "true" //state - if true  - sets side menu aria-hidden(if false - on the contrary)
   };
 
@@ -73,144 +70,143 @@ class Map extends Component {
         {
           center: { lat: 55.755826, lng: 37.6173 },
           zoom: 12,
-          styles:
-          [
+          styles: [
             {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#f7f1df"
-                    }
-                ]
+              featureType: "landscape.man_made",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#f7f1df"
+                }
+              ]
             },
             {
-                "featureType": "landscape.natural",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#d0e3b4"
-                    }
-                ]
+              featureType: "landscape.natural",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#d0e3b4"
+                }
+              ]
             },
             {
-                "featureType": "landscape.natural.terrain",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "landscape.natural.terrain",
+              elementType: "geometry",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-                "featureType": "poi",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "poi",
+              elementType: "labels",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-                "featureType": "poi.business",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "poi.business",
+              elementType: "all",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-                "featureType": "poi.medical",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#fbd3da"
-                    }
-                ]
+              featureType: "poi.medical",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#fbd3da"
+                }
+              ]
             },
             {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#bde6ab"
-                    }
-                ]
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#bde6ab"
+                }
+              ]
             },
             {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "road",
+              elementType: "labels",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#ffe15f"
-                    }
-                ]
+              featureType: "road.highway",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#ffe15f"
+                }
+              ]
             },
             {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#efd151"
-                    }
-                ]
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  color: "#efd151"
+                }
+              ]
             },
             {
-                "featureType": "road.arterial",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#ffffff"
-                    }
-                ]
+              featureType: "road.arterial",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#ffffff"
+                }
+              ]
             },
             {
-                "featureType": "road.local",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "black"
-                    }
-                ]
+              featureType: "road.local",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "black"
+                }
+              ]
             },
             {
-                "featureType": "transit.station.airport",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#cfb2db"
-                    }
-                ]
+              featureType: "transit.station.airport",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#cfb2db"
+                }
+              ]
             },
             {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#a2daf2"
-                    }
-                ]
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#a2daf2"
+                }
+              ]
             }
-        ]
+          ]
         }
       );
     }
@@ -257,7 +253,7 @@ class Map extends Component {
       //add listener to marker to change icon on mouseoutevent
       marker.addListener("mouseout", function() {
         if (this.animating === false) {
-        this.setIcon(mouseOutIcon);
+          this.setIcon(mouseOutIcon);
         }
       });
 
@@ -273,10 +269,13 @@ class Map extends Component {
   }
   //function to create marker icon
   makeMarkerIcon(markerIcon) {
-    let markerImage = new window.google.maps.MarkerImage(markerIcon, null, /* size is determined at runtime */
-      null, /* origin is 0,0 */
-      null, /* anchor is bottom center of the scaled image */
-      new window.google.maps.Size(42, 68));
+    let markerImage = new window.google.maps.MarkerImage(
+      markerIcon,
+      null /* size is determined at runtime */,
+      null /* origin is 0,0 */,
+      null /* anchor is bottom center of the scaled image */,
+      new window.google.maps.Size(42, 68)
+    );
     return markerImage;
   }
 
@@ -310,80 +309,30 @@ class Map extends Component {
       );
       // console.log(this.props.foursquareData);
       let foursquareItem = this.props.foursquareData[index];
-    
-      $.ajax({
-        url:
-          `https://api.foursquare.com/v2/venues/${foursquareItem.id}?&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806`,
-        dataType: "json",
-        cache: false,
-        success: function(data) {
-          infoWindow.setContent(
-            this.props.foursquareError
-              ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
-                `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-                  marker.title
-                }</div>
-            <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
-            <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
-              : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
-                `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-                  marker.title
-                }</div>
-          <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
-          <img class="venueImage" alt="venueImage" src="${data.response.venue.bestPhoto.prefix}cap300${data.response.venue.bestPhoto.suffix}">
-          <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
-            foursquareItem.id
-          } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
-          );
-          console.log(data.response.venue)
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.log('error')
-        }.bind(this)
-      });
-
-
-    
-   
-
 
       //sets content of infowindow
-      // infoWindow.setContent(
-      //   this.props.foursquareError
-      //     ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
-      //       `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-      //         marker.title
-      //       }</div>
-      //   <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
-      //   <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
-      //     : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
-      //       `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-      //         marker.title
-      //       }</div>
-      // <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
-      // <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
-      //   foursquareItem.id
-      // } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
-      // );
+      infoWindow.setContent(
+        this.props.foursquareError
+          ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
+            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+              marker.title
+            }</div>
+        <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
+        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
+          : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
+            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+              marker.title
+            }</div>
+      <div class="markerAddress">Address: ${
+        foursquareItem.location.address
+      }</div>
+      <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
+        foursquareItem.id
+      } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
+      );
     }
     infoWindow.open(this.state.map, marker);
   }
-
-  // getFoursquarePlaceAPI(id) {
-  //   $.ajax({
-  //     url:
-  //       `https://api.foursquare.com/v2/venues/${id}?&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806`,
-  //     dataType: "json",
-  //     cache: false,
-  //     success: function(data) {
-  //       this.setState({ itemVenue: data.response.venue });
-  //       console.log(y)
-  //     }.bind(this),
-  //     error: function(xhr, status, err) {
-  //       console.log('error')
-  //     }.bind(this)
-  //   });
-  // }
 
   // function to open/close sidemenu
   toggleSideMenu = () => {
@@ -396,7 +345,7 @@ class Map extends Component {
         styleSideMenu: { width: "250px" },
         ariaHiddenSideMenu: "false" //if sidemenu open
       });
-      // console.log(this.child)
+      console.log(this.child);
       this.child.stationInput.focus();
     } else {
       this.setState({
@@ -416,11 +365,11 @@ class Map extends Component {
       );
       let newMarker = this.state.markers[index];
       let newInfoWindow = this.state.infoWindow;
+
       this.showInfoWindow(newMarker, newInfoWindow);
       // console.log(newMarker);
     };
 
-    
     //we catch event on clicking the list by checking if we clicked withing <ul> and nodeName of event target was li (technique from 3rd project)
     document.getElementById("list").addEventListener("click", e => {
       if (e.target && e.target.nodeName === "LI") {
@@ -505,7 +454,7 @@ class Map extends Component {
           closeInfowindow={this.closeInfowindow}
           markers={markers}
           ariaHiddenSideMenu={ariaHiddenSideMenu}
-          ref={(ch) => this.child = ch}
+          ref={ch => (this.child = ch)}
         />
       </div>
     );

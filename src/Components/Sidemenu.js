@@ -13,39 +13,41 @@ class SideMenu extends Component {
       locations,
       markers,
       ariaHiddenSideMenu
-    } = this.props
+    } = this.props;
 
-  return (
-    //renders sidemenu
-    <div
-      id="side-menu"
-      className="side-nav"
-      style={styleSideMenu}
-      aria-hidden={ariaHiddenSideMenu}
-    >
-      <a href="#" className="btn-close" onClick={toggleSideMenu}>
-        &times;
-      </a>
-      <div className="options-box">
-        <h1>Find Train Station</h1>
-        <div className="filter" role="search" aria-labelledby="filter">
-          <input
-            id="filter"
-            placeholder="Filter..."
-            type="text"
-            value={query}
-            onChange={e => updateQuery(e)}
-            onClick={closeInfowindow}
-            ref = {(input) => {this.stationInput = input;}}//is used to set focus in componentDidMount method
-          />
-        </div>
-        <div>
-          <List locations={locations} markers={markers} />
+    return (
+      //renders sidemenu
+      <div
+        id="side-menu"
+        className="side-nav"
+        style={styleSideMenu}
+        aria-hidden={ariaHiddenSideMenu}
+      >
+        <a href="#" className="btn-close" onClick={toggleSideMenu}>
+          &times;
+        </a>
+        <div className="options-box">
+          <h1>Find Train Station</h1>
+          <div className="filter" role="search" aria-labelledby="filter">
+            <input
+              id="filter"
+              placeholder="Filter..."
+              type="text"
+              value={query}
+              onChange={e => updateQuery(e)}
+              onClick={closeInfowindow}
+              ref={input => {
+                this.stationInput = input;
+              }} //is used to set focus in componentDidMount method
+            />
+          </div>
+          <div>
+            <List locations={locations} markers={markers} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
 }
 
 SideMenu.propTypes = {

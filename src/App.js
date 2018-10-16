@@ -16,12 +16,12 @@ class App extends Component {
   getFoursquareAPI() {
     $.ajax({
       url:
-        "https://api.foursquare.com/v2/venues/search?ll=55.755826,37.6173&query=train&intent=browse&radius=10000&categoryId=4bf58dd8d48988d129951735&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806",
+        "https://api.foursquare.com/v2/venues/search?ll=55.755826,37.6173&query=train&intent=browse&radius=10000&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806&m=foursquare",
       dataType: "json",
       cache: false,
       success: function(data) {
         this.setState({ foursquareData: data.response.venues });
-        console.log(this.state.foursquareData)
+        console.log(this.state.foursquareData);
       }.bind(this),
       error: function(xhr, status, err) {
         this.setState({ foursquareError: true }); //handling errors on downloading API
