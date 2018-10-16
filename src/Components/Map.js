@@ -4,6 +4,8 @@ import Sidemenu from "./Sidemenu";
 import yellowMarker from "./../icons/yellowMarker.svg"; //imports icon for marker from folder
 import PropTypes from "prop-types";
 import redMarker from "./../icons/redMarker.svg"; 
+import $ from "jquery";
+
 
 class Map extends Component {
   // constructor() {
@@ -59,6 +61,7 @@ class Map extends Component {
     styleSideMenu: { width: 0 },
     infoWindow: {},
     query: "",
+    itemVenue: {},
     ariaHiddenSideMenu: "true" //state - if true  - sets side menu aria-hidden(if false - on the contrary)
   };
 
@@ -307,28 +310,80 @@ class Map extends Component {
       );
       // console.log(this.props.foursquareData);
       let foursquareItem = this.props.foursquareData[index];
+    
+      $.ajax({
+        url:
+          `https://api.foursquare.com/v2/venues/${foursquareItem.id}?&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806`,
+        dataType: "json",
+        cache: false,
+        success: function(data) {
+          infoWindow.setContent(
+            this.props.foursquareError
+              ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
+                `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+                  marker.title
+                }</div>
+            <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
+            <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
+              : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
+                `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+                  marker.title
+                }</div>
+          <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
+          <img class="venueImage" alt="venueImage" src="${data.response.venue.bestPhoto.prefix}cap300${data.response.venue.bestPhoto.suffix}">
+          <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
+            foursquareItem.id
+          } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
+          );
+          console.log(data.response.venue)
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.log('error')
+        }.bind(this)
+      });
+
+
+    
+   
+
 
       //sets content of infowindow
-      infoWindow.setContent(
-        this.props.foursquareError
-          ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
-            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-              marker.title
-            }</div>
-        <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
-        <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
-          : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
-            `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
-              marker.title
-            }</div>
-      <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
-      <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
-        foursquareItem.id
-      } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
-      );
+      // infoWindow.setContent(
+      //   this.props.foursquareError
+      //     ? //if there was an error in requesting data from Foursquare API we set this content to infowindow not to crash UI
+      //       `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+      //         marker.title
+      //       }</div>
+      //   <div>Address: There was an error on loading info from Foursquare. Try reload page later. </div>
+      //   <a tabIndex="1" href=https://foursquare.com/ target="_blank" rel="nofollow noopener" class="linkTitle">Look at me on Foursquare</a></div>`
+      //     : //if there was no error in requesting data from Foursquare API we set this content to Infowindow using data from Foursquare API
+      //       `<div tabIndex="1" class="infowindowContent"><div id="markerTitle">${
+      //         marker.title
+      //       }</div>
+      // <div class="markerAddress">Address: ${foursquareItem.location.address}</div>
+      // <a tabIndex="1" href=https://foursquare.com/v/foursquare-hq/${
+      //   foursquareItem.id
+      // } target="_blank" rel="nofollow noopener" class="linkTitle">View on Foursquare</a></div>`
+      // );
     }
     infoWindow.open(this.state.map, marker);
   }
+
+  // getFoursquarePlaceAPI(id) {
+  //   $.ajax({
+  //     url:
+  //       `https://api.foursquare.com/v2/venues/${id}?&client_id=XLS14R0FF13HLWSQTW3OCWQIGVO22BPT2EBONMVZ54ISGVBQ&client_secret=TPHAWSJ0SEEO1DCZYIRYOJRTXVZFHOTAFIWAFGOJTFNSPRGB&v=20140806`,
+  //     dataType: "json",
+  //     cache: false,
+  //     success: function(data) {
+  //       this.setState({ itemVenue: data.response.venue });
+  //       console.log(y)
+  //     }.bind(this),
+  //     error: function(xhr, status, err) {
+  //       console.log('error')
+  //     }.bind(this)
+  //   });
+  // }
 
   // function to open/close sidemenu
   toggleSideMenu = () => {
@@ -341,7 +396,7 @@ class Map extends Component {
         styleSideMenu: { width: "250px" },
         ariaHiddenSideMenu: "false" //if sidemenu open
       });
-      console.log(this.child)
+      // console.log(this.child)
       this.child.stationInput.focus();
     } else {
       this.setState({
@@ -361,11 +416,11 @@ class Map extends Component {
       );
       let newMarker = this.state.markers[index];
       let newInfoWindow = this.state.infoWindow;
-
       this.showInfoWindow(newMarker, newInfoWindow);
       // console.log(newMarker);
     };
 
+    
     //we catch event on clicking the list by checking if we clicked withing <ul> and nodeName of event target was li (technique from 3rd project)
     document.getElementById("list").addEventListener("click", e => {
       if (e.target && e.target.nodeName === "LI") {
